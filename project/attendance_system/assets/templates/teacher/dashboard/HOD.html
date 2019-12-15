@@ -1,0 +1,50 @@
+<div>
+<div class="ui grid">
+<div class="eight wide column">
+<form action="" method="post">
+{% csrf_token %}
+<select class="ui selection dropdown" name="class">
+  <option value=0>ALL Class</option>
+  {% for class in classes %}
+  <option value={{class.pk}}>{{class}}</option>
+  {% endfor %}
+</select>
+<div class="ui input"><input type="text" name="date" placeholder="Date" class="date" value={{date}}></div>
+<input type="submit" value="SHOW" class="ui button inverted yellow">
+</form>
+</div>
+<div class="eight wide column">
+<form action="" method="post">
+<span class="ui container error">
+  <input type="radio" name="stype" value='1' checked="checked">Name<br>
+  <input type="radio" name="stype" value='2'>Roll No.
+</span>
+<span class="ui search">
+  <input class="prompt" type="text" placeholder="Search Student By Name" name="search">
+</span>
+<input class="ui button inverted blue" type="submit" value="SEARCH">
+</form>
+</div>
+</div>
+  
+  <div class="ui pointing menu inverted">
+    <a id="today" class="active item" >Today</a>
+    <a id="week" class="item">Week</a>
+    <a id="month" class="item">Month</a>
+  </div>
+
+  
+  <div class="ui raised segment container f16">
+    <div class="ui grid">
+        <div  class="sixteen wide column raised segment container today_b">
+          <span>{{graph.0|safe}}</span>
+        </div>
+        <div class="sixteen wide column raised segment container week_b">
+          <span >{{graph.1|safe}}</span>
+        </div>
+         <div class="sixteen wide column raised segment container month_b">
+          <span >{{graph.2|safe}}</span>
+        </div>
+    </div>
+</div>
+</div>

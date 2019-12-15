@@ -1,0 +1,87 @@
+{% load static %} {% load widget_tweaks %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>{% block title %} Attendance Management System {% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css?family=Acme|Josefin+Slab:700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+  <link rel='stylesheet' href='{% static "css/body.css" %}'>
+  <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $(".date").datepicker({ dateFormat: 'yy-mm-dd' });
+      $(".datetime").datetimepicker({ theme: 'dark', format: 'Y-m-d h:i:00', formatTime: 'h:i:S a' })
+    });
+
+    function defaultI(img) {
+      img.onerror = null;
+      img.src = 'https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png'
+    }
+    
+    $('.fixed')
+  .visibility({
+    type   : 'fixed',
+    offset : 15 // give some space from top of screen
+  });
+ 
+  </script>
+  
+  {% block link_scripts %}{% endblock %}
+  
+</head>
+
+<body class="acme">
+
+
+
+  <div class="z_in ui stackable menu fixed inverted inverted ">
+    <a class='item' href='/'><i class='buysellads icon green'></i>Home</a>
+    <a class="item" href='/admin'><i class="ui street view icon"></i>Adminstration</a>
+    {% if not request.user.is_authenticated %}
+    <a class="item right" href='/teacher/signup'><i class='red user icon' ></i>Teachers Signup</a>
+    <a class="item " href='/student/signup'><i class='green user icon' ></i>Students Signup</a> {% endif %}
+    {% if request.user.is_authenticated %}
+    <span class="ui item right"></span>
+    {% if request.user.is_teacher == False and request.user.is_student == False %}
+
+   {% else %}
+    <div class="ui dropdown item js">
+      <i class="blue caret down icon"></i>
+      <div class="u menu">
+        <a class="item" href='/{{request.session.type_profile}}/edit/{{request.user.pk}}'>EDIT INFO</a>
+        <a class="item">CHANGE PASSWORD</a>
+        <a class="item">MORE DETAILS</a>
+      </div>
+    </div>
+    <a class=" acme item " href='/{{request.session.type_profile}}/dashboard/profile/{{request.user.pk}}/'><img class="ui circular image" src="/media/{{request.session.profile}}" height=25px width=25px onerror="defaultI(this)"><span class="user_bar">Welcome {{request.user.first_name}}</span></a>    {% endif %}
+    <a class="item" href='/user/logout'><i class='blue logout icon' ></i>Logout</a> {% endif %}
+  </div>
+  
+  
+  <div class='top'>
+    {% if errors %}
+    <div class="ui message red">
+    <ul>
+      {% for error in errors %}
+      <li>{{error.e}} {% if error.link != ' ' %}<a class="ui button red inverted" href="{{error.link}}">GO</a>{% endif %}</li>
+      {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
+    {% block content %} {% endblock %}
+  </div>
+  <script type="text/javascript">
+    $('div.ui.dropdown.item').click(function() {
+      $('div.u.menu').toggle();
+    });
+  </script>
+</body>
+
+</html>

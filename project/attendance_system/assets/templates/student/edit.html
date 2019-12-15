@@ -1,0 +1,29 @@
+{% extends 'body.html' %} {% load widget_tweaks %} {% block content %}
+<div class="ui grid">
+    <div class="eight wide column ui container shad">
+        <div class="ui center aligned container">
+            <h1 class="js heading">Edit Form</h1>
+        </div>
+        <div class="seg">
+
+            <form action='' method='post' enctype="multipart/form-data" novalidate>
+                {% csrf_token %} 
+                <div class="ui grid">
+                {% for field in form %}
+                
+                <div class="one wide column"></div>
+                <div class="six wide column ui input"><label class="light">{{field.label}}:</label><br>{% render_field field placeholder=field.label %}</div>
+                <div class="one wide column"></div>
+                
+                {% endfor %}
+                </div>
+                <div class="ui center aligned container">
+                    <input class="ui button green inverted" type='submit' value='EDIT'>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="seven wide column"></div>
+</div>
+{% endblock %}

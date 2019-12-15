@@ -1,0 +1,69 @@
+{% extends 'body.html' %}
+{% load static %}
+{% block title %}DashBoard{% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="ui grid">
+<div class="three wide column">
+<div class="ui vertical menu inverted fixed" id="margin">
+  <a class="teal item">
+        <img class="ui circular image" src="/media/{{TeacherProfile.image}}" width='150' height='150' onerror="defaultI(this)">
+  </a>
+  <a class="active teal item" href='/teacher/dashboard/profile/{{request.user.pk}}'>
+    PROFILE
+  </a>
+  <a class="teal item" href='/teacher/dashboard/analysis/{{request.user.pk}}'>
+    Analysis
+  </a>
+  <a class="teal item" href='/teacher/dashboard/sheets'>
+    Sheets
+  </a>
+</div>
+</div>
+<div class="twelve wide column shad">
+<div class="ui container segment inverted">
+<div class="ui raised segment container f16">
+<div class="ui grid">
+    <div class="one wide column"></div>
+    <div class="four wide column">
+      <div class="ui white segment"><h4>User INFO:</h4></div>
+      <div class="ui segment">
+        <p>Username:- {{teacher.username}}</p>
+        <p>First Name:- {{teacher.first_name}}</p>
+        <p>Last Name:- {{teacher.last_name}}</p>
+      </div>
+    </div>
+    <div class="one wide column"></div>
+    <div class="four wide column">
+      <div class="ui white segment"><h4>Contact INFO:</h4></div>
+      <div class="ui segment">
+        <p>Mobile Number:- {{TeacherProfile.mobile_number}}</p>
+        <p>Address:- {{TeacherProfile.address}}</p>
+      </div>
+    </div>
+    <div class="one wide column"></div>
+    <div class="four wide column">
+      <div class="ui white segment"><h4>BIO INFO:</h4></div>
+      <div class="ui segment">
+        <p>Teacher ID:- {{TeacherProfile.teacher_id}}</p>
+        <p>Date Of Birth:- {{TeacherProfile.dob}}</p>
+        <p>Department:- {{TeacherProfile.department}}</p>
+        <p>TG:- {{TeacherProfile.class_TG}}</p>
+        <p>Years Of Experience:- {{TeacherProfile.years_of_experience}}</p>
+        <p>Education:- {{TeacherProfile.education}}</p>
+        <p>Last Lecture:- {{TeacherProfile.last_lecture}}</p> 
+        <!--<p>Subject:- {% for sub in TeacherProfile.subject.all %}{{sub}},{% endfor %}</p>-->
+      </div>
+    </div>
+    <div class="one wide column"></div>
+
+</div>
+</div>
+</div>
+</div>
+{% else %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+{% load zip %}
+<link rel='stylesheet' href='{% static "css/table_grid/table.css" %}'>
+<div class="table_outer_div" id='Tgrid'>
+<div class="scroll_table">
+<table class="">
+    <thead>
+        <tr class='header'>
+        <th class="column_heading "></th>
+        <th class="column_heading">___RollNo___</th>
+        {% for item in head_pop %}
+        <th class="column_heading ">{{item}}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for row_pop in rows %}
+    <tr class='tuple'>
+        <td class="row_heading">{{row_pop.0}}</td>
+        <td class="attribute">{{row_pop.0}}</td>
+        {% for item in row_pop.1|zip:head_pop %}
+        <td class='attribute' id='{{row_pop.0}}_{{item.1}}'>{{item.0}}</td>
+        {% endfor %}
+        <td class="percent">{{row_pop.2}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        
+    </tfoot>
+</table>
+</div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/table_grid/table.js' %}"></script>

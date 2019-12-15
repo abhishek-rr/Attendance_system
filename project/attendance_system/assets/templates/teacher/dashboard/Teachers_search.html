@@ -1,0 +1,71 @@
+<div>
+<div class="ui grid">
+<div class="eight wide column">
+<form action="" method="post">
+{% csrf_token %}
+<select class="ui selection dropdown" name="class" disabled>
+  {% for class in classes %}
+  {% if class_id != class.pk %}
+  <option id="{{class.pk}}" value={{class.pk}}>{{class}}</option>
+  {% else %}
+  <option id="{{class.pk}}" value={{class.pk}} selected="selected">{{class}}</option>
+  {% endif %}
+  {% endfor %}
+</select>
+<div class="ui input"><input type="text" name="date" placeholder="Date" class="date" value={{date}}></div>
+<input type="submit" value="SHOW" class="ui button inverted yellow">
+</form>
+</div>
+<div class="eight wide column">
+<form action="" method="post">
+<span class="ui container error">
+  <input type="radio" name="stype" value='1' checked="checked">Name<br>
+  <input type="radio" name="stype" value='2'>Roll No.
+</span>
+<span class="ui search">
+  <input class="prompt" type="text" placeholder="Search Student By Name" name="search" value='{{name}}'>
+</span>
+<input class="ui button inverted blue" type="submit" value="SEARCH">
+</form>
+</div>
+</div>  
+{% for a in atten %}
+<div class="ui segment inverted">
+<small>Roll Number:-{{a.1.roll_no}}</small>  
+<br>
+<small>Student ID:-{{a.1.student_id}}</small>
+<br>
+<small>Class:-{{a.1.Class}}</small>
+</div>
+<table class="ui compact celled defination table">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Total Lecture</th>
+            <th>Attendance</th>
+            <th>Percantage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for A in a.0 %}
+        {% if A.3 <= 30 %}
+        <tr class="negative">
+            <th>{{A.2}}</th>
+            <th>{{A.1}}</th>
+            <th>{{A.0}}</th>
+            <th>{{A.3}} %</th>
+        </tr>
+        {% else %}
+        <tr>
+            <th>{{A.2}}</th>
+            <th>{{A.1}}</th>
+            <th>{{A.0}}</th>
+            <th>{{A.3}} %</th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+{{gr|safe}}
+</div>

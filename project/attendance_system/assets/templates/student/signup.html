@@ -1,0 +1,60 @@
+{% extends 'body.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block link_scripts %}<link rel='stylesheet' href='{% static "css/dash.css" %}'>{% endblock %}
+
+
+{% block title %}Student's SignUP{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+
+<div class="ui center aligned container">
+<div class='ui compact message red inverted js'>
+    <h4 class="acme">You Are Already LoggedIn You Cannot SingnUP!!!</h4>
+    <a class="ui button purple button" href="/teacher/logout">Logout</a>
+</div>
+</div>
+{% else %}
+<div class="ui grid">
+<div class="eight wide column ui container shad">
+    <div class="ui center aligned container">
+        <h1 class="js heading">Student SignUP Form</h1>
+    </div>
+    <div class="seg">
+    <form action='' method='post' class="ui " novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="js light">User Signup</h1>
+        <div class="ui grid">
+            {% for field in user_form %}
+            {% if field.name != 'user' and field.name != 'DELETE' %}
+            <div class="one wide column"></div>
+            <div class="six wide column ui input"><label class="light">{{field.label}}:</label><br>{% render_field field placeholder=field.label %}<br><span class='error'>{{field.errors}}</span></div>
+            <div class="one wide column"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+         {{formset.management_form}}
+        <h1 class="js light">Information</h1>
+        <div class="ui grid">
+            {% for form in formset %}
+            {% for field in form %}
+            {% if field.name != 'user' and field.name != 'DELETE' %}
+            <div class="one wide column"></div>
+            <div class="six wide column ui input"><label class="light">{{field.label}}:</label><br>{% render_field field placeholder=field.label %}</div>
+            <div class="one wide column"></div>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="ui grid">
+            <div class="seven wide column"></div>
+            <span class="two wide column"><input type="submit" value="SUBMIT" class="ui button inverted green"></span>
+        </div>
+            
+    </form>
+    </div>
+</div>
+<div class="seven wide column"></div>
+</div>
+{% endif %}
+{% endblock %}

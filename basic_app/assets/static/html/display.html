@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>username:{{user.username}}</p>
+        <p>firstname:{{user.first_name}}</p>
+        <p>lastname:{{user.last_name}}</p>
+        <p>email:{{user.email}}</p>
+        <p>student_ID:{{profile.student_id}}</p>
+        <p>mobile number:{{profile.mobile_number}}</p>
+        <img src="/media/{{profile.profile_pic}}" height="25px" width="25px">
+        <form action='/logout' method='GET'><button>LOGOUT</button></form>
+    </body>
+</html>

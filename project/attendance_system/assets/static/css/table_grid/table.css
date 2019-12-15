@@ -1,0 +1,55 @@
+.table_outer_div{
+    overflow:hidden;
+}
+
+.scroll_table
+{
+    overflow:auto;
+    border-radius:5px 5px;
+}
+
+.header{
+    padding:10px 10px 10px 10px;
+}
+
+thead{
+    height: 30px !important;
+    line-height: 50px !important;
+    background-color: #DDDDDD;
+}
+
+.row_heading{
+    width: 100px !important;
+    background-color: #AAAAAA;
+    text-align: center !important;
+    position: absolute;
+    padding:10px 10px 10px 10px;
+}
+
+table{
+    max-width:5000px;
+    border-spacing: 0px;
+    padding:0px 0px 0px 0px;
+    background-color: #FFFFFF;
+    border-radius:4px 4px;
+}
+.attribute{
+    padding:10px 10px 10px 10px;
+    text-align: center;
+}
+
+.percent{
+    background-color: #777777;
+    text-align: center;
+    font-family: 'js';
+}
+  
+th{
+    padding-left:7px;
+    padding-right:7px;
+}
+
+td{
+    padding-left:7px;
+    padding-right:7px;
+}

@@ -1,0 +1,125 @@
+
+.user_bar{
+    color:#99ff22;
+    font-size: 15px;
+}
+
+
+.seg{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px; 
+}
+
+.floatingdivs{
+    float:left;
+    clear:none;
+}
+
+.top {
+    margin-top: 130px;
+    margin-bottom:70px;
+}
+
+.container{
+    background:rgba(255,255,255,0) !important;
+}
+
+.shad{
+    background-color:rgba(0,0,0,0.3) !important;
+    box-shadow: 3px 3px rgba(0,0,0,0.5);
+}
+
+.heading{
+    font-family: Acme;
+    font-size: 35px;
+    font-weight: bold;
+    color:#00FFFF;
+}
+
+.z_in{
+    z-index: 102 !important;
+    
+}
+
+.js{
+    font-family: 'Josefin Slab','Sans-serif' !important;
+}
+
+.acme{
+    font-family: 'Acme','sans-serif' !important;
+}
+
+#margin{
+    margin-top: 70px !important;
+    color:#F3E5F5;!important
+}
+
+body {
+     /*background: url(http://sfwallpaper.com/images/background-wallpaper-images-8.jpg);
+    background: url('https://previews.123rf.com/images/nuttakit/nuttakit1111/nuttakit111100016/11156782-below-green-grass-on-wood-for-web-page-background.jpg');
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+        background: url('https://cdn.gobankingrates.com/wp-content/uploads/2017/07/0_main_170517_gbr_studentloaninterestrates_1920x1080.jpg');
+    */
+    background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.indiv{
+    font-family: 'Acme';
+    color:rgba(125,255,75,1);
+    font-size: 20px;
+}
+
+.HT{
+    color:yellow;
+}
+
+.error{
+    color:red;
+    font-family: 'Acme';
+    font-size:17px;
+}
+
+.pad5{
+    padding-top:5px !important;
+    padding-bottom:5px !important;
+}
+
+.divider{
+    padding-left:0px !important;
+    padding-right:0px !important;
+}
+
+.f16{
+    font-size: 16px !important;
+}
+
+.checkbox
+{
+    color:#ff8f00;
+    font-size:20px;
+}
+
+.light
+{
+    color:#FFFF00;
+}
+
+.goldenO
+{
+    color:#FF8F00;
+}
+.collapsing{
+    padding:0px !important;
+}
+.success{
+    color:#00FF00;
+}

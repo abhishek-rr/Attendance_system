@@ -1,0 +1,62 @@
+{% extends 'body.html' %}
+{% load static %}
+{% block title %}DashBoard{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="ui grid">
+<div class="three wide column">
+<div class="ui vertical compact menu inverted fixed" id="margin">
+  <a class="teal item">
+        <img class="ui circular image" src="/media/{{StudentProfile.image}}" width='150' height='150' onerror="defaultI(this)">
+  </a>
+  <a class="teal item" href='/student/dashboard/profile/{{request.user.pk}}'>
+    PROFILE
+  </a>
+  <a class="active teal item" href='/student/dashboard/analysis/{{request.user.pk}}'>
+    Analysis
+  </a>
+  
+</div>
+</div>
+<div class="twelve wide column">
+<div class="ui container segment">
+<div class="ui raised segment container f16">
+
+  <div class="ui segment inverted">
+    {% if all_subjects_total < 40 %}
+      <p class="error">Your attendance is low. Attend lecutres regularly!</p>
+    {% else %}
+      <p class="success">You have sufficient attendance. Keep it up!</p>
+    {% endif %}
+  </div>
+  <table class="ui compact celled defination table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Attendance</th>
+        <th>Total Lecture</th>
+        <th>Percantage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for subj in data %}
+      <tr>
+        <th>{{subj.0}}</th>
+        <th>{{subj.1}}</th>
+        <th>{{subj.2}}</th>
+        <th>{{subj.3}}%</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {{graph|safe}}
+  {{graph2|safe}}
+  </div>
+</div>
+</div>
+</div>
+{% else %}
+
+{% endif %}
+
+{% endblock %}

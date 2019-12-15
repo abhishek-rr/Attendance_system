@@ -1,0 +1,79 @@
+<div>
+<div class="ui grid">
+<div class="eight wide column">
+<form action="" method="post">
+{% csrf_token %}
+<select class="ui selection dropdown" name="class" disabled>
+  {% for class in classes %}
+  {% if class_id != class.pk %}
+  <option id="{{class.pk}}" value={{class.pk}}>{{class}}</option>
+  {% else %}
+  <option id="{{class.pk}}" value={{class.pk}} selected="selected">{{class}}</option>
+  {% endif %}
+  {% endfor %}
+</select>
+<div class="ui input"><input type="text" name="date" placeholder="Date" class="date" value={{date}}></div>
+<input type="submit" value="SHOW" class="ui button inverted yellow">
+</form>
+</div>
+<div class="eight wide column">
+<form action="" method="post">
+<span class="ui container error">
+  <input type="radio" name="stype" value='1' checked="checked">Name<br>
+  <input type="radio" name="stype" value='2'>Roll No.
+</span>
+<span class="ui search">
+  <input class="prompt" type="text" placeholder="Search Student By Name" name="search">
+</span>
+<input class="ui button inverted blue" type="submit" value="SEARCH">
+</form>
+</div>
+</div>  
+  <div class="ui pointing menu inverted">
+    <a id="today" class="active item" >Today</a>
+    <a id="week" class="item">Week</a>
+    <a id="month" class="item">Month</a>
+  </div>
+
+  
+  <div class="ui raised segment container f16">
+    <div class="ui grid">
+        <div  class="eight wide column raised segment container today_b">
+          <span>{{graph.0|safe}}</span>
+        </div>
+        <div id="" class="eight wide column raised segment container week_b">
+          <span >{{graph.1|safe}}</span>
+        </div>
+         <div  class="eight wide column raised segment container month_b">
+          <span >{{graph.2|safe}}</span>
+        </div>
+        <div class="one wide column"></div>
+        <div class="seven wide column">
+          <div class="ui container shad">
+          <div class="ui center aligned segment red inverted">
+            <h3 class="today_b">Todays Defaulter list</h3>
+            <h3 class="week_b">Weekly Defaulter list</h3>
+            <h3 class="month_b">Monthly Defaulter list</h3>
+          </div>
+          <div class="ui container shad">
+            <ul class="today_b">
+              {% for roll in def.0 %}
+              <li class="error">{{roll}}</li>
+              {% endfor %}
+            </ul>
+            <ul class="week_b">
+              {% for roll in def.1 %}
+              <li class="error">{{roll}}</li>
+              {% endfor %}
+            </ul>
+            <ul class="month_b">
+              {% for roll in def.2 %}
+              <li class="error">{{roll}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>

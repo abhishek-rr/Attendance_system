@@ -1,0 +1,47 @@
+{% extends 'body.html' %}
+{% load static %}
+{% block title %}DashBoard{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="ui grid">
+<div class="three wide column fixed">
+<div class="ui vertical compact menu inverted fixed" id="margin">
+  <a class="teal item">
+        <img class="ui circular image" src="/media/{{TeacherProfile.image}}" width='150' height='150' onerror="defaultI(this)">
+  </a>
+  <a class="teal item" href='/teacher/dashboard/profile/{{request.user.pk}}'>
+    PROFILE
+  </a>
+  <a class="active teal item" href='/teacher/dashboard/analysis/{{request.user.pk}}'>
+    Analysis
+  </a>
+  <a class="item" href='/teacher/dashboard/sheets'>
+    Sheets
+  </a>
+</div>
+</div>
+<div class="twelve wide column shad">
+<div class="ui container segment shad">
+
+{% block analysis %}
+{{display|safe}}
+{% endblock %}
+</div>
+</div>
+</div>
+{% else %}
+
+{% endif %}
+
+<script type="text/javascript" src="{% static 'js/teacher_a.js' %}">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$('#AJAX').click(function(){
+    $('.load').load('/teacher/its/ajax/')
+});});
+</script>
+
+
+{% endblock %}
